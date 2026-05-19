@@ -11,6 +11,10 @@ const profileService = {
     const { data } = await axiosInstance.put<User>('/users/profile', payload);
     return data;
   },
+
+  changePassword: async (payload: { old_password: string; new_password: string }): Promise<void> => {
+    await axiosInstance.put('/users/profile/password', payload);
+  },
 };
 
 export default profileService;

@@ -7,6 +7,7 @@ import ManagerLayout from '@/shared/components/Layout/ManagerLayout.tsx';
 
 // Auth
 const LoginPage = lazy(() => import('@/features/auth/pages/LoginPage'));
+const StaffLoginPage = lazy(() => import('@/features/auth/pages/StaffLoginPage'));
 const RegisterPage = lazy(() => import('@/features/auth/pages/RegisterPage'));
 
 // User
@@ -60,6 +61,7 @@ export default function App() {
         {/* Guest only */}
         <Route element={<GuestGuard />}>
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/login/staff" element={<StaffLoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Route>
 

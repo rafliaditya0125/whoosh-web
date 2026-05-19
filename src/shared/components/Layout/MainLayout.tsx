@@ -196,7 +196,6 @@ export default function MainLayout({ children }: MainLayoutProps) {
           </div>
 
           <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-[#bdc7d1] font-inter text-[14px]">
-            <p>© 2026 PT Whoosh Cepat Aman. Hak Cipta Dilindungi.</p>
             <div className="flex gap-8">
               <a href="#" className="hover:text-white transition-colors">Privasi</a>
               <a href="#" className="hover:text-white transition-colors">Kontak</a>

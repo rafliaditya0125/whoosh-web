@@ -25,7 +25,7 @@ export function GuestGuard() {
 export function AdminGuard() {
   const { isAuthenticated, user } = useAuthStore();
 
-  if (!isAuthenticated) return <Navigate to="/login" replace />;
+  if (!isAuthenticated) return <Navigate to="/login/staff" replace />;
   if (user?.role !== 'admin') return <Navigate to="/" replace />;
   return <Outlet />;
 }
@@ -33,7 +33,7 @@ export function AdminGuard() {
 export function ManagerGuard() {
   const { isAuthenticated, user } = useAuthStore();
 
-  if (!isAuthenticated) return <Navigate to="/login" replace />;
+  if (!isAuthenticated) return <Navigate to="/login/staff" replace />;
   if (user?.role !== 'manager' && user?.role !== 'admin') return <Navigate to="/" replace />;
   return <Outlet />;
 }

@@ -1,26 +1,30 @@
+import { useState } from 'react';
 import { useLogout } from '@/features/auth/hooks/useAuth';
 import useAuthStore from '@/features/auth/stores/authStore';
 import { 
   Users, Globe, Lock, Mail, Bell, MessageCircle, 
-  CreditCard, Volume2, BookOpen, Info, ChevronRight, LogOut,
+  ChevronRight, LogOut, Volume2, BookOpen, Info,
   Settings, ShieldCheck, HelpCircle, User, CreditCard as CardIcon
 } from 'lucide-react';
 import Card from '@/shared/components/Card';
 import Badge from '@/shared/components/Badge';
 import Button from '@/shared/components/Button';
+import EmailModal from '../components/EmailModal';
+import PasswordModal from '../components/PasswordModal';
+import PassengerModal from '../components/PassengerModal';
 
 const COMMON_FUNCTIONS = [
-  { icon: Users, label: 'Penumpang Terdaftar', color: 'bg-[#fbeaea] text-[#870012]' },
-  { icon: CardIcon, label: 'Metode Pembayaran', color: 'bg-blue-50 text-blue-600' },
-  { icon: Bell, label: 'Notifikasi & Promo', color: 'bg-amber-50 text-amber-600' },
-  { icon: MessageCircle, label: 'Bantuan WhatsApp', color: 'bg-green-50 text-green-600' },
+  { id: 'passengers', icon: Users, label: 'Penumpang Terdaftar', color: 'bg-[#fbeaea] text-[#870012]' },
+  { id: 'payment', icon: CardIcon, label: 'Metode Pembayaran', color: 'bg-blue-50 text-blue-600' },
+  { id: 'promo', icon: Bell, label: 'Notifikasi & Promo', color: 'bg-amber-50 text-amber-600' },
+  { id: 'whatsapp', icon: MessageCircle, label: 'Bantuan WhatsApp', color: 'bg-green-50 text-green-600' },
 ];
 
 const ACCOUNT_SETTINGS = [
-  { icon: Mail, label: 'E-mail', detail: 'Email utama akun' },
-  { icon: Lock, label: 'Ganti Kata Sandi', detail: 'Update keamanan akun' },
-  { icon: Globe, label: 'Bahasa', detail: 'Indonesia (ID)' },
-  { icon: ShieldCheck, label: 'Keamanan Akun', detail: 'Verifikasi dua langkah' },
+  { id: 'email', icon: Mail, label: 'E-mail', detail: 'Email utama akun' },
+  { id: 'password', icon: Lock, label: 'Ganti Kata Sandi', detail: 'Update keamanan akun' },
+  { id: 'language', icon: Globe, label: 'Bahasa', detail: 'Indonesia (ID)' },
+  { id: 'security', icon: ShieldCheck, label: 'Keamanan Akun', detail: 'Verifikasi dua langkah' },
 ];
 
 const SERVICE_INFO = [
@@ -30,9 +34,21 @@ const SERVICE_INFO = [
   { icon: Info, label: 'Versi Aplikasi', value: 'V2.0.1 PRO' },
 ];
 
+
+
 export default function ProfilePage() {
   const { user } = useAuthStore();
   const logout = useLogout();
+
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+  const [isPassengerModalOpen, setIsPassengerModalOpen] = useState(false);
+
+  const handleActionClick = (id: string) => {
+    if (id === 'passengers') setIsPassengerModalOpen(true);
+    if (id === 'email') setIsEmailModalOpen(true);
+    if (id === 'password') setIsPasswordModalOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-[#f6faff] pb-24">
@@ -90,8 +106,12 @@ export default function ProfilePage() {
             Akses Cepat Pengguna
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {COMMON_FUNCTIONS.map(({ icon: Icon, label, color }) => (
-              <button key={label} className="group flex flex-col items-center gap-5 p-6 rounded-[2.5rem] hover:bg-[#f6faff] transition-all border border-transparent hover:border-[#eef2f6]">
+            {COMMON_FUNCTIONS.map(({ id, icon: Icon, label, color }) => (
+              <button 
+                key={label} 
+                onClick={() => handleActionClick(id)}
+                className="group flex flex-col items-center gap-5 p-6 rounded-[2.5rem] hover:bg-[#f6faff] transition-all border border-transparent hover:border-[#eef2f6]"
+              >
                 <div className={`w-16 h-16 ${color} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-[#141d23]/5 group-hover:-rotate-6 duration-500`}>
                   <Icon size={28} />
                 </div>
@@ -108,9 +128,10 @@ export default function ProfilePage() {
               <h3 className="font-hanken text-[22px] font-black text-[#141d23] tracking-tight">Pengaturan Keamanan</h3>
             </div>
             <div className="p-4">
-              {ACCOUNT_SETTINGS.map(({ icon: Icon, label, detail }) => (
+              {ACCOUNT_SETTINGS.map(({ id, icon: Icon, label, detail }) => (
                 <button
                   key={label}
+                  onClick={() => handleActionClick(id)}
                   className="w-full flex items-center justify-between p-5 rounded-2xl hover:bg-[#f6faff] transition-all group"
                 >
                   <div className="flex items-center gap-5">
@@ -184,6 +205,20 @@ export default function ProfilePage() {
           <p className="font-inter font-medium text-[#141d23] text-[10px] uppercase tracking-widest leading-none">Designed & Engineered for Future Mobility</p>
         </div>
       </div>
+
+      {/* Modals */}
+      <EmailModal 
+        isOpen={isEmailModalOpen} 
+        onClose={() => setIsEmailModalOpen(false)} 
+      />
+      <PasswordModal 
+        isOpen={isPasswordModalOpen} 
+        onClose={() => setIsPasswordModalOpen(false)} 
+      />
+      <PassengerModal 
+        isOpen={isPassengerModalOpen} 
+        onClose={() => setIsPassengerModalOpen(false)} 
+      />
     </div>
   );
 }
