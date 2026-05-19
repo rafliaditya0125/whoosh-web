@@ -1,0 +1,100 @@
+/* Whoosh Web Frontend - Premium Design System */
+
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+/* ============================================
+   Design Tokens
+   ============================================ */
+
+@theme {
+  /* ========== Color Palette ========== */
+  --color-brand-primary: #870012;
+  --color-brand-primary-hover: #9d0015;
+  --color-brand-primary-active: #6b000e;
+  --color-brand-primary-light: #fbeaea;
+  
+  --color-neutral-50: #f6faff;
+  --color-neutral-100: #eef2f6;
+  --color-neutral-200: #dbe4ed;
+  --color-neutral-300: #bdc7d1;
+  --color-neutral-400: #8c9aaf;
+  --color-neutral-500: #5c6a7e;
+  --color-neutral-600: #465366;
+  --color-neutral-700: #323c4d;
+  --color-neutral-800: #1e2532;
+  --color-neutral-900: #141d23;
+  
+  --color-bg-page: #f6faff;
+  --color-bg-card: #ffffff;
+  
+  --color-text-main: #141d23;
+  --color-text-muted: #5c403e;
+  
+  --color-success: #00874e;
+  --color-warning: #876200;
+  --color-error: #ba1a1a;
+  
+  /* ========== Typography ========== */
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --font-display: 'Hanken Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  /* ========== Border Radius ========== */
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+@layer base {
+  * {
+    @apply border-neutral-200;
+  }
+  
+  body {
+    @apply bg-neutral-50 text-neutral-900 font-sans;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold;
+  }
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+@layer utilities {
+  .font-hanken { font-family: 'Hanken Grotesk', sans-serif; }
+  .font-inter { font-family: 'Inter', sans-serif; }
+  .font-jetbrains { font-family: 'JetBrains Mono', monospace; }
+
+  .animate-float {
+    animation: float 10s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(40px, -40px); }
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
