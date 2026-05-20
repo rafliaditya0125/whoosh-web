@@ -31,22 +31,22 @@ Whoosh Web is a single-page application that replicates the core functionality o
 
 ## Tech Stack
 
-| Category | Library | Version |
-|---|---|---|
-| Framework | React | ^19 |
-| Language | TypeScript | ^6 |
-| Build Tool | Vite | ^8 |
-| Styling | Tailwind CSS | v4 |
-| Routing | React Router | v7 |
-| Server State | TanStack Query | v5 |
-| Client State | Zustand | v5 |
-| Forms | React Hook Form + Zod | v7 + v4 |
-| HTTP Client | Axios | v1 |
-| Charts | Recharts | v3 |
-| Tables | TanStack Table | v8 |
-| Icons | Lucide React | latest |
-| Notifications | React Hot Toast | v2 |
-| Testing | Vitest + Testing Library | v4 |
+| Category      | Library                  | Version |
+| ------------- | ------------------------ | ------- |
+| Framework     | React                    | ^19     |
+| Language      | TypeScript               | ^6      |
+| Build Tool    | Vite                     | ^8      |
+| Styling       | Tailwind CSS             | v4      |
+| Routing       | React Router             | v7      |
+| Server State  | TanStack Query           | v5      |
+| Client State  | Zustand                  | v5      |
+| Forms         | React Hook Form + Zod    | v7 + v4 |
+| HTTP Client   | Axios                    | v1      |
+| Charts        | Recharts                 | v3      |
+| Tables        | TanStack Table           | v8      |
+| Icons         | Lucide React             | latest  |
+| Notifications | React Hot Toast          | v2      |
+| Testing       | Vitest + Testing Library | v4      |
 
 ---
 
@@ -82,6 +82,7 @@ features/{feature}/
 ```
 
 **Key principles applied:**
+
 - Repository pattern — all API calls isolated in `services/`
 - Dependency injection via hooks
 - One file, one responsibility
@@ -93,38 +94,41 @@ features/{feature}/
 ## Features
 
 ### User (Casual Indonesian UI)
-| Feature | Description |
-|---|---|
-| Authentication | Register & login with email/password. Dynamic button labels based on form state. |
-| Schedule Search | Search by departure station, arrival station, and date. Station swap button. |
-| Schedule List | Browse available trains with departure/arrival times, duration, and pricing. |
-| Class Selection | Choose Economy, Business, or VIP class via dialog. |
-| Seat Selection | Visual seat map with real-time availability. 10-minute seat locking to prevent double booking. |
-| Passenger Management | Add passengers manually or pick from saved list. |
-| Booking Confirmation | Review trip details, passengers, seats, and total price before confirming. |
-| Payment | 15-minute countdown timer. Supports QRIS, Bank Transfer, and E-Wallet. |
-| My Tickets | Three tabs: Unpaid, Active Tickets, History. |
-| Ticket Detail | QR code for check-in, reschedule, and refund actions. |
-| Refund | Submit refund request with reason and bank account details. 25% cancellation fee. |
-| Profile | View and edit profile. Manage saved passengers. |
+
+| Feature              | Description                                                                                    |
+| -------------------- | ---------------------------------------------------------------------------------------------- |
+| Authentication       | Register & login with email/password. Dynamic button labels based on form state.               |
+| Schedule Search      | Search by departure station, arrival station, and date. Station swap button.                   |
+| Schedule List        | Browse available trains with departure/arrival times, duration, and pricing.                   |
+| Class Selection      | Choose Economy, Business, or VIP class via dialog.                                             |
+| Seat Selection       | Visual seat map with real-time availability. 10-minute seat locking to prevent double booking. |
+| Passenger Management | Add passengers manually or pick from saved list.                                               |
+| Booking Confirmation | Review trip details, passengers, seats, and total price before confirming.                     |
+| Payment              | 15-minute countdown timer. Supports QRIS, Bank Transfer, and E-Wallet.                         |
+| My Tickets           | Three tabs: Unpaid, Active Tickets, History.                                                   |
+| Ticket Detail        | QR code for check-in, reschedule, and refund actions.                                          |
+| Refund               | Submit refund request with reason and bank account details. 25% cancellation fee.              |
+| Profile              | View and edit profile. Manage saved passengers.                                                |
 
 ### Admin (Formal Indonesian UI)
-| Feature | Description |
-|---|---|
-| User Management | List, search, block/activate accounts, change roles. |
-| Station Management | Full CRUD for train stations. |
-| Train Management | Full CRUD for trains with seat capacity. |
+
+| Feature             | Description                                                             |
+| ------------------- | ----------------------------------------------------------------------- |
+| User Management     | List, search, block/activate accounts, change roles.                    |
+| Station Management  | Full CRUD for train stations.                                           |
+| Train Management    | Full CRUD for trains with seat capacity.                                |
 | Schedule Management | Full CRUD for schedules with per-class pricing. Toggle active/inactive. |
-| Booking Management | View all bookings with status and date filters. |
-| Refund Management | Approve or reject refund requests with optional notes. |
+| Booking Management  | View all bookings with status and date filters.                         |
+| Refund Management   | Approve or reject refund requests with optional notes.                  |
 
 ### Manager (Formal Indonesian UI)
-| Feature | Description |
-|---|---|
-| Dashboard | Revenue summary (today/week/month), tickets sold, occupancy rate, top routes. Bar charts via Recharts. |
-| Sales Report | Filterable by date range. Per-route, per-train, per-class breakdown. |
-| Export | Download sales report as CSV or XLSX. |
-| Transaction Monitor | Real-time payment transaction list with status and search filters. |
+
+| Feature             | Description                                                                                            |
+| ------------------- | ------------------------------------------------------------------------------------------------------ |
+| Dashboard           | Revenue summary (today/week/month), tickets sold, occupancy rate, top routes. Bar charts via Recharts. |
+| Sales Report        | Filterable by date range. Per-route, per-train, per-class breakdown.                                   |
+| Export              | Download sales report as CSV or XLSX.                                                                  |
+| Transaction Monitor | Real-time payment transaction list with status and search filters.                                     |
 
 ---
 
@@ -207,7 +211,7 @@ whoosh-fe/
 
 ```bash
 # Clone the repository
-git clone <repo-url>
+git clone https://github.com/rafliaditya0125/whoosh-web.git
 cd whoosh-fe
 
 # Install dependencies
@@ -227,9 +231,9 @@ The app will be available at `http://localhost:5173`.
 
 ## Environment Variables
 
-| Variable | Description | Default |
-|---|---|---|
-| `VITE_API_BASE_URL` | Backend API base URL | `/api` |
+| Variable            | Description          | Default |
+| ------------------- | -------------------- | ------- |
+| `VITE_API_BASE_URL` | Backend API base URL | `/api`  |
 
 Create a `.env` file in the project root:
 
@@ -263,19 +267,19 @@ Configured via `VITE_API_BASE_URL` environment variable.
 
 ### Key Endpoints
 
-| Domain | Endpoints |
-|---|---|
-| Auth | `POST /auth/login`, `POST /auth/register`, `GET /auth/me` |
-| Stations | `GET /stations`, `POST /stations`, `PUT /stations/:id`, `DELETE /stations/:id` |
-| Schedules | `GET /schedules`, `GET /schedules/:id`, `POST /schedules`, `PUT /schedules/:id`, `PATCH /schedules/:id/status` |
-| Seats | `GET /seats/available`, `POST /seats/lock`, `POST /seats/unlock` |
-| Bookings | `POST /bookings`, `GET /bookings/my`, `GET /bookings/:id`, `POST /bookings/:id/cancel`, `POST /bookings/:id/reschedule`, `POST /bookings/:id/refund` |
-| Payments | `POST /payments/booking/:bookingId`, `GET /payments/:paymentId` |
-| Tickets | `GET /tickets/:id/qr` |
-| User | `GET /users/profile`, `PUT /users/profile` |
-| Saved Passengers | `GET /saved-passengers`, `POST /saved-passengers`, `DELETE /saved-passengers/:id` |
-| Admin | `GET /admin/users`, `PATCH /admin/users/:id/status`, `GET /admin/bookings`, `GET /admin/refunds`, `PUT /admin/refunds/:id` |
-| Manager | `GET /manager/dashboard`, `GET /manager/reports/sales`, `GET /manager/reports/export`, `GET /manager/transactions` |
+| Domain           | Endpoints                                                                                                                                            |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Auth             | `POST /auth/login`, `POST /auth/register`, `GET /auth/me`                                                                                            |
+| Stations         | `GET /stations`, `POST /stations`, `PUT /stations/:id`, `DELETE /stations/:id`                                                                       |
+| Schedules        | `GET /schedules`, `GET /schedules/:id`, `POST /schedules`, `PUT /schedules/:id`, `PATCH /schedules/:id/status`                                       |
+| Seats            | `GET /seats/available`, `POST /seats/lock`, `POST /seats/unlock`                                                                                     |
+| Bookings         | `POST /bookings`, `GET /bookings/my`, `GET /bookings/:id`, `POST /bookings/:id/cancel`, `POST /bookings/:id/reschedule`, `POST /bookings/:id/refund` |
+| Payments         | `POST /payments/booking/:bookingId`, `GET /payments/:paymentId`                                                                                      |
+| Tickets          | `GET /tickets/:id/qr`                                                                                                                                |
+| User             | `GET /users/profile`, `PUT /users/profile`                                                                                                           |
+| Saved Passengers | `GET /saved-passengers`, `POST /saved-passengers`, `DELETE /saved-passengers/:id`                                                                    |
+| Admin            | `GET /admin/users`, `PATCH /admin/users/:id/status`, `GET /admin/bookings`, `GET /admin/refunds`, `PUT /admin/refunds/:id`                           |
+| Manager          | `GET /manager/dashboard`, `GET /manager/reports/sales`, `GET /manager/reports/export`, `GET /manager/transactions`                                   |
 
 ### Error Handling
 
@@ -293,11 +297,11 @@ The Axios response interceptor handles all HTTP errors globally:
 
 ## Role-Based Access
 
-| Role | Access |
-|---|---|
-| `user` | `/`, `/schedules`, `/booking/*`, `/payment/*`, `/tickets/*`, `/profile` |
-| `admin` | `/admin/*` |
-| `manager` | `/manager/*` (also has access to admin dashboard data) |
+| Role      | Access                                                                  |
+| --------- | ----------------------------------------------------------------------- |
+| `user`    | `/`, `/schedules`, `/booking/*`, `/payment/*`, `/tickets/*`, `/profile` |
+| `admin`   | `/admin/*`                                                              |
+| `manager` | `/manager/*` (also has access to admin dashboard data)                  |
 
 Route guards are implemented as React Router `<Outlet>`-based components in `src/features/auth/components/Guards.tsx`. Unauthenticated users are redirected to `/login`. Users accessing a route outside their role are redirected to their home route.
 
@@ -307,11 +311,11 @@ Route guards are implemented as React Router `<Outlet>`-based components in `src
 
 The following backend API gaps have been identified and proposals submitted to the backend team:
 
-| # | Issue | Workaround |
-|---|---|---|
-| 001 | `GET /schedules` returns station IDs, not names | Fetch all stations once, cache for 10 min, resolve by ID on the frontend |
-| 002 | No per-class seat availability in schedule response | Class selection dialog does not show remaining seats per class |
-| 003 | `GET /bookings/my` has no pagination | All bookings fetched at once |
+| #   | Issue                                               | Workaround                                                               |
+| --- | --------------------------------------------------- | ------------------------------------------------------------------------ |
+| 001 | `GET /schedules` returns station IDs, not names     | Fetch all stations once, cache for 10 min, resolve by ID on the frontend |
+| 002 | No per-class seat availability in schedule response | Class selection dialog does not show remaining seats per class           |
+| 003 | `GET /bookings/my` has no pagination                | All bookings fetched at once                                             |
 
 ---
 

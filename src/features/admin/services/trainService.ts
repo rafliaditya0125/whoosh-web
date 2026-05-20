@@ -10,7 +10,46 @@ interface TrainPayload {
 const trainService = {
   getAll: async (page = 1, limit = 20): Promise<PaginatedResponse<Train>> => {
     const { data } = await axiosInstance.get('/trains', { params: { page, limit } });
-    return data;
+    if (Array.isArray(data)) {
+      const total = data.length;
+      return {
+        items: data,
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages: Math.max(1, Math.ceil(total / limit)),
+        },
+      };
+    }
+
+    if (data && typeof data === 'object') {
+      const maybe = data as Partial<PaginatedResponse<Train>> & { items?: unknown };
+      if (Array.isArray(maybe.items)) {
+        if (maybe.pagination) return data as PaginatedResponse<Train>;
+
+        const total = maybe.items.length;
+        return {
+          items: maybe.items as Train[],
+          pagination: {
+            page,
+            limit,
+            total,
+            totalPages: Math.max(1, Math.ceil(total / limit)),
+          },
+        };
+      }
+    }
+
+    return {
+      items: [],
+      pagination: {
+        page,
+        limit,
+        total: 0,
+        totalPages: 1,
+      },
+    };
   },
 
   getById: async (id: string): Promise<Train> => {

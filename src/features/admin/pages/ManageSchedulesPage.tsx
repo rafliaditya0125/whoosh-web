@@ -54,10 +54,16 @@ export default function ManageSchedulesPage() {
 
   const openCreate = () => { setForm(EMPTY_FORM); setModal({ mode: 'create' }); };
   const openEdit = (s: Schedule) => {
+    const getID = (val: string | Station) => typeof val === 'object' ? val.station_id : val;
     setForm({
-      train_id: s.train_id, departure_station: s.departure_station, arrival_station: s.arrival_station,
-      departure_time: s.departure_time.slice(0, 16), arrival_time: s.arrival_time.slice(0, 16),
-      price: String(s.price), price_business: String(s.price_business ?? ''), price_vip: String(s.price_vip ?? ''),
+      train_id: s.train_id, 
+      departure_station: getID(s.departure_station), 
+      arrival_station: getID(s.arrival_station),
+      departure_time: s.departure_time.slice(0, 16), 
+      arrival_time: s.arrival_time.slice(0, 16),
+      price: String(s.price), 
+      price_business: String(s.price_business ?? ''), 
+      price_vip: String(s.price_vip ?? ''),
     });
     setModal({ mode: 'edit', data: s });
   };
@@ -75,7 +81,10 @@ export default function ManageSchedulesPage() {
     else if (modal?.data) update({ id: modal.data.schedule_id, ...payload }, { onSuccess: () => setModal(null) });
   };
 
-  const stationName = (id: string) => stations.find((s: Station) => s.station_id === id)?.station_name ?? id;
+  const stationName = (val: string | Station) => {
+    if (typeof val === 'object' && val !== null) return val.station_name;
+    return stations.find((s: Station) => s.station_id === val)?.station_name ?? val;
+  };
 
   const columns = [
     {

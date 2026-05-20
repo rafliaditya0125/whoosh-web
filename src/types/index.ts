@@ -91,14 +91,15 @@ export type ScheduleStatus = 'active' | 'inactive';
 export interface Schedule {
   schedule_id: string;
   train_id: string;
-  departure_station: string;
-  arrival_station: string;
+  departure_station: string | Station;
+  arrival_station: string | Station;
   departure_time: string;
   arrival_time: string;
   price: number;
   price_business?: number;
   price_vip?: number;
   status?: ScheduleStatus;
+  train?: Train;
 }
 
 export interface ScheduleDetail extends Schedule {
